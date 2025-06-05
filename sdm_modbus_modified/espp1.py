@@ -1,4 +1,4 @@
-from sdm_modbus import meter
+from sdm_modbus_modified import meter
 
 
 class ESPP1(meter.Meter):
