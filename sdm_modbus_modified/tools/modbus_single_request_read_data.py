@@ -30,7 +30,11 @@ def single_request_read_data(port,baudrate,id,parity,device_name):
         print(device.read_all_scaled())
         device.disconnect()
 
+<<<<<<< HEAD
 if "__init__" == "__main__":
+=======
+if __name__ == "__main__":
+>>>>>>> develop
     parser = argparse.ArgumentParser(description="Read data from a single SDM ou WS100-19XX device.")
 
     parser.add_argument("-p", "--port", type=str, required=True,
