@@ -190,11 +190,7 @@ class Meter:
             if not hasattr(result, "registers") or len(result.registers) != length:
                 continue
 
-<<<<<<< HEAD
-            return result.registers  # ⬅️ Donne les registres bruts
-=======
             return result.registers  # Returns raw registers
->>>>>>> develop
 
         return None
 
@@ -205,7 +201,6 @@ class Meter:
                 self.connect()
                 time.sleep(0.1)
                 continue
-
             result = self.client.read_holding_registers(address=address, count=length, slave=self.unit)
 
             if result is None or result.isError():
@@ -213,11 +208,7 @@ class Meter:
             if not hasattr(result, "registers") or len(result.registers) != length:
                 continue
 
-<<<<<<< HEAD
-            return result.registers  # ⬅️ Donne les registres bruts
-=======
             return result.registers  # Returns raw registers
->>>>>>> develop
 
         return None
 
