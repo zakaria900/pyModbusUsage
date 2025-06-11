@@ -1,4 +1,5 @@
 from sdm_modbus_modified import meter
+import pymodbus.exceptions
 
 
 class WS100(meter.Meter):
@@ -66,8 +67,11 @@ class WS100_19XX(WS100):
             return value * scale * (10 ** -decimals)
 
     def read_all_scaled(self):
-                """Reads all registers with their scales"""
-                return {
-                    k: self.read_scaled(k)
-                    for k in self.registers.keys()
-                }
+        """Reads all registers with their scales"""
+        result = {}
+        for k in self.registers.keys():
+            try:
+                result[k] = self.read_scaled(k)
+            except pymodbus.exceptions.ModbusIOException:
+                print(f'Problem with register address: {k}')
+        return result
