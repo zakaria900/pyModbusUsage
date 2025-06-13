@@ -55,7 +55,41 @@ class WS100_19XX(WS100):
             "reverse_active_demand": (0x017A, 2, meter.registerType.INPUT, meter.registerDataType.INT32, int, "Reverse Active Demand", "W", 2, 1,1),
             "forward_reactive_demand": (0x0180, 2, meter.registerType.INPUT, meter.registerDataType.INT32, int, "Forward Reactive Demand", "var", 2, 1,1),
             "reverse_reactive_demand": (0x0184, 2, meter.registerType.INPUT, meter.registerDataType.INT32, int, "Reverse Reactive Demand", "var", 2, 1,1),
-            }
+
+        # ======================
+        # 3. Meter Parameters (Zählerparameter)
+        # ======================
+        "serial_number": (0x1000, 6, meter.registerType.INPUT, meter.registerDataType.BYTES, bytes, "Serial Number", "–", None, None, None),
+        "modbus_id": (0x1003, 1, meter.registerType.INPUT, meter.registerDataType.INT16, int, "Modbus ID", "–", None, None, None),
+        "hw_version": (0x1004, 1, meter.registerType.INPUT, meter.registerDataType.INT16, int, "HW Version", "–", None, None, None),
+        "fw_checksum": (0x1005, 1, meter.registerType.INPUT, meter.registerDataType.INT16, int, "FW Checksum", "–", None, None, None),
+        "time": (0x1007, 4, meter.registerType.INPUT, meter.registerDataType.BYTES, bytes, "Time (Current Date & Time)", "–", None, None, None),
+        "cycle_display": (0x100B, 1, meter.registerType.INPUT, meter.registerDataType.INT16, int, "Cycle Display Time", "s", None, None, None),
+        "baud_rate": (0x100C, 1, meter.registerType.INPUT, meter.registerDataType.INT16, int, "485 Baud Rate", "–", None, None, None),
+        "parity": (0x100D, 1, meter.registerType.INPUT, meter.registerDataType.INT16, int, "Parity", "–", None, None, None),
+        "stop_bit": (0x100E, 1, meter.registerType.INPUT, meter.registerDataType.INT16, int, "Stop Bit", "–", None, None, None),
+        "energy_calc_code": (0x100F, 1, meter.registerType.INPUT, meter.registerDataType.INT16, int, "Energy Calculation Code", "–", None, None, None),
+        "demand_mode": (0x1010, 1, meter.registerType.INPUT, meter.registerDataType.INT16, int, "Demand Mode", "–", None, None, None),
+        "demand_cycle": (0x1011, 1, meter.registerType.INPUT, meter.registerDataType.INT16, int, "Demand Cycle", "min", None, None, None),
+        "auto_cycle_display": (0x1012, 4, meter.registerType.INPUT, meter.registerDataType.BYTES, bytes, "Auto Cycle Display Content", "–", None, None, None),
+        "password_setting": (0x1016, 1, meter.registerType.INPUT, meter.registerDataType.INT16, int, "Password Setting", "–", None, None, None),
+        "meter_running_time": (0x1018, 2, meter.registerType.INPUT, meter.registerDataType.INT32, int, "Meter Running Time", "–", None, None, None),
+        "timing_current": (0x101A, 2, meter.registerType.INPUT, meter.registerDataType.INT32, int, "Timing Current Value", "mA", None, None, None),
+    
+        # ======================
+        # 4. Tariff Parameters (Tarifparameter)
+        # ======================
+        "tariff_table_1": (0x1700, 12, meter.registerType.HOLDING, meter.registerDataType.BYTES, bytes, "Time Period Table 1", "", None, None, None),
+        "tariff_table_2": (0x170C, 12, meter.registerType.HOLDING, meter.registerDataType.BYTES, bytes, "Time Period Table 2", "", None, None, None),
+        "tariff_table_3": (0x1718, 12, meter.registerType.HOLDING, meter.registerDataType.BYTES, bytes, "Time Period Table 3", "", None, None, None),
+        "tariff_table_4": (0x1724, 12, meter.registerType.HOLDING, meter.registerDataType.BYTES, bytes, "Time Period Table 4", "", None, None, None),
+        "tariff_table_5": (0x1730, 12, meter.registerType.HOLDING, meter.registerDataType.BYTES, bytes, "Time Period Table 5", "", None, None, None),
+        "tariff_table_6": (0x173C, 12, meter.registerType.HOLDING, meter.registerDataType.BYTES, bytes, "Time Period Table 6", "", None, None, None),
+        "tariff_table_7": (0x1748, 12, meter.registerType.HOLDING, meter.registerDataType.BYTES, bytes, "Time Period Table 7", "", None, None, None),
+        "tariff_table_8": (0x1754, 12, meter.registerType.HOLDING, meter.registerDataType.BYTES, bytes, "Time Period Table 8", "", None, None, None),
+        "time_zone_table": (0x1760, 12, meter.registerType.HOLDING, meter.registerDataType.BYTES, bytes, "Time Zone Table", "", None, None, None),
+        "holidays_table": (0x176C, 21, meter.registerType.HOLDING, meter.registerDataType.BYTES, bytes, "Holidays Table", "", None, None, None),
+                }
 
     def read_scaled(self, key):
             """Reads a register and scales the data"""
